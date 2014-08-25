@@ -63,7 +63,7 @@ group :test do
   gem 'json_spec', github: 'collectiveidea/json_spec'
   gem 'capybara'
   gem 'selenium-webdriver', '~> 2.40.0'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '~>1.3.0'
   gem 'poltergeist', '~> 1.5', require: false
   gem 'webmock'
   gem 'vcr'
