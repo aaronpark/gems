@@ -23,7 +23,7 @@ gem 'haml'
 gem 'foreigner'
 gem 'active_pdftk', git: 'https://github.com/tcocca/active_pdftk.git'
 gem 'nokogiri'
-gem 'sass-rails', '~> 4.0.2' # CKEditor blows up when this is updated to 4.0.3
+gem 'sass-rails', '4.0.2' # CKEditor blows up when this is updated to 4.0.3
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'compass-rails', '~> 1.1.7'
