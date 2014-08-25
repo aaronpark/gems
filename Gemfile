@@ -44,7 +44,7 @@ gem 'whenever', require: false
 gem 'roo'
 gem 'ckeditor'
 gem 'non-stupid-digest-assets'
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.8.0' # try upgrading to 0.10 when available
 gem 'chartkick'
 gem 'groupdate'
 gem 'rollbar'
