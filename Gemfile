@@ -55,8 +55,8 @@ group :production, :staging do
 end
 
 group :test do
-  gem 'rspec', '~>3'
-  gem 'rspec-rails', '~> 3'
+  gem 'rspec', '~> 3.1.0'
+  gem 'rspec-rails', '~> 3.1.0'
   gem 'cucumber-rails', require: false
   gem 'simplecov'
   gem 'email_spec'
