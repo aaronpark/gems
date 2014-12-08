@@ -49,6 +49,10 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'rollbar'
 gem 'enumerize'
+gem 'sidekiq'
+gem 'capistrano-sidekiq' , group: :development
+gem 'sinatra', require: false
+gem 'activerecord-import'
 
 group :production, :staging do
   gem 'newrelic_rpm'

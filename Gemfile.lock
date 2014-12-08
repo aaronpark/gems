@@ -55,6 +55,8 @@ GEM
       activesupport (= 4.0.9)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
+    activerecord-import (0.6.0)
+      activerecord (>= 3.0)
     activerecord-session_store (0.1.0)
       actionpack (>= 4.0.0, < 5)
       activerecord (>= 4.0.0, < 5)
@@ -98,9 +100,10 @@ GEM
     bullet (4.13.1)
       activesupport (>= 3.0.0)
       uniform_notifier (>= 1.6.0)
-    byebug (3.2.0)
+    byebug (3.5.1)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
+      slop (~> 3.6)
     callsite (0.0.11)
     cancancan (1.9.2)
     capistrano (2.15.5)
@@ -111,6 +114,9 @@ GEM
       net-ssh-gateway (>= 1.1.0)
     capistrano-ext (1.2.1)
       capistrano (>= 1.0.0)
+    capistrano-sidekiq (0.3.6)
+      capistrano
+      sidekiq
     capybara (2.4.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -132,7 +138,7 @@ GEM
     cliver (0.3.2)
     cocaine (0.5.4)
       climate_control (>= 0.0.3, < 1.0)
-    codeclimate-test-reporter (0.4.0)
+    codeclimate-test-reporter (0.4.3)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -142,7 +148,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    columnize (0.8.9)
+    columnize (0.9.0)
     compass (0.12.4)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -150,6 +156,7 @@ GEM
     compass-rails (1.1.7)
       compass (>= 0.12.2)
       sprockets (<= 2.11.0)
+    connection_pool (2.0.0)
     coveralls (0.7.1)
       multi_json (~> 1.3)
       rest-client
@@ -213,7 +220,7 @@ GEM
     formtastic (2.3.0)
       actionpack (>= 3.0)
     fssm (0.2.10)
-    geocoder (1.2.4)
+    geocoder (1.2.6)
     gherkin (2.12.2)
       multi_json (~> 1.3)
     groupdate (2.2.1)
@@ -309,8 +316,8 @@ GEM
     net-ssh (2.7.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    netrc (0.7.7)
-    newrelic_rpm (3.9.4.245)
+    netrc (0.9.0)
+    newrelic_rpm (3.9.8.273)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     non-stupid-digest-assets (1.0.4)
@@ -352,6 +359,8 @@ GEM
     rack (1.5.2)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.2)
       rack (>= 1.0)
     railroady (1.1.2)
@@ -378,6 +387,9 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    redis (3.1.0)
+    redis-namespace (1.5.1)
+      redis (~> 3.0, >= 3.0.4)
     request_exception_handler (0.5.0)
       actionpack (>= 2.1)
     responders (1.1.1)
@@ -385,7 +397,7 @@ GEM
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    rollbar (1.0.1)
+    rollbar (1.2.13)
       multi_json (~> 1.3)
     roo (1.13.2)
       nokogiri
@@ -435,11 +447,21 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0.4)
-    simplecov (0.9.0)
+    sidekiq (3.2.2)
+      celluloid (>= 0.15.2)
+      connection_pool (>= 2.0.0)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
+    simplecov (0.9.1)
       docile (~> 1.1.0)
-      multi_json
+      multi_json (~> 1.0)
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    sinatra (1.4.5)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
     slop (3.6.0)
     spreadsheet (0.9.8)
       ruby-ole (>= 1.0)
@@ -458,15 +480,15 @@ GEM
     systemu (2.6.4)
     term-ansicolor (1.3.0)
       tins (~> 1.0)
-    thin (1.6.2)
-      daemons (>= 1.0.9)
-      eventmachine (>= 1.0.0)
-      rack (>= 1.0.0)
+    thin (1.6.3)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0)
+      rack (~> 1.0)
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
     timers (1.1.0)
-    tins (1.3.2)
+    tins (1.3.3)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -480,7 +502,7 @@ GEM
     uuidtools (2.1.4)
     validates_email_format_of (1.6.0)
       i18n
-    vcr (2.9.2)
+    vcr (2.9.3)
     warden (1.2.3)
       rack (>= 1.0)
     wasabi (3.3.0)
@@ -509,6 +531,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.8.0)
   active_pdftk!
   activeadmin!
+  activerecord-import
   activerecord-session_store
   airbrake
   american_date
@@ -523,6 +546,7 @@ DEPENDENCIES
   cancancan
   capistrano (~> 2.15)
   capistrano-ext
+  capistrano-sidekiq
   capybara
   chartkick
   ckeditor (~> 4.0.8)
@@ -585,7 +609,9 @@ DEPENDENCIES
   sass-rails (= 4.0.2)
   savon (~> 2.0)
   selenium-webdriver (~> 2.40.0)
+  sidekiq
   simplecov
+  sinatra
   spring
   spring-commands-rspec
   sprockets-rails
