@@ -25,13 +25,13 @@ gem 'active_pdftk', git: 'https://github.com/tcocca/active_pdftk.git'
 gem 'nokogiri'
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 gem 'compass-rails', '~> 1.1.7'
 gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'angularjs-rails'
 gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'airbrake'
-gem 'jbuilder', '~> 1.5'
+gem 'jbuilder'
 gem 'yajl-ruby'
 gem 'request_exception_handler'
 gem 'validates_email_format_of'
@@ -50,7 +50,7 @@ gem 'groupdate'
 gem 'rollbar'
 gem 'enumerize'
 gem 'sidekiq'
-gem 'capistrano-sidekiq' , group: :development
+gem 'capistrano-sidekiq', group: :development
 gem 'sinatra', require: false
 gem 'activerecord-import'
 
@@ -66,7 +66,7 @@ group :test do
   gem 'email_spec'
   gem 'json_spec', github: 'collectiveidea/json_spec'
   gem 'capybara'
-  gem 'selenium-webdriver', '~> 2.40.0'
+  gem 'selenium-webdriver'
   gem 'database_cleaner', '~>1.3.0'
   gem 'poltergeist', '~> 1.5', require: false
   gem 'webmock'
