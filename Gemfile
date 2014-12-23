@@ -53,6 +53,7 @@ gem 'sidekiq'
 gem 'capistrano-sidekiq', group: :development
 gem 'sinatra', require: false
 gem 'activerecord-import'
+gem 'sweetalert-rails'
 
 group :production, :staging do
   gem 'newrelic_rpm'
