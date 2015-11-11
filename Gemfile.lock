@@ -110,7 +110,7 @@ GEM
       sass (>= 3.2.0)
       thor
     builder (3.1.4)
-    bullet (4.14.6)
+    bullet (4.14.10)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.9.0)
     byebug (8.1.0)
@@ -508,7 +508,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    timecop (0.7.3)
+    timecop (0.8.0)
     timers (4.1.1)
       hitimes
     ttfunk (1.0.3)
