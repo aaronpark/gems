@@ -82,11 +82,7 @@ group :test do
   gem 'vcr'
   gem 'factory_girl_rails'
   gem 'codeclimate-test-reporter', require: false
-  # gem 'coveralls', require: false
   gem 'timecop'
-
-  # gem 'cucumber-rails', require: false, github: 'cucumber/cucumber-rails',  branch: 'master_rails4_test'
-  # gem 'ci_reporter'
 end
 
 group :development do
